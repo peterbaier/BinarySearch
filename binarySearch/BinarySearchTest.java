@@ -3,8 +3,7 @@ package binarySearch;
 import org.junit.Before;
 import org.junit.Test;
 
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class BinarySearchTest {
     BinarySearch bs;
@@ -18,6 +17,7 @@ public class BinarySearchTest {
     @Test
     public void testMergeSort() throws Exception {
         int[] result = bs.mergeSort(myArray);
+        System.out.println("Pre-written array sorted: ");
         for(int x : result ) {
             System.out.print(x + " ");
         }
@@ -27,10 +27,10 @@ public class BinarySearchTest {
 
     @Test
     public void testMergeSortWithRandomArray(){
-        int[] randArray = new int[15];
+        int[] randArray = new int[30];
         System.out.println("\nRandom Array elements unsorted: ");
         for (int i = 0; i < randArray.length ; i++) {
-            randArray[i] = (int)(Math.random()*50 + 1);
+            randArray[i] = (int)(Math.random()*200 + 1);
             System.out.print(randArray[i] + " ");
         }
         System.out.println("\nand Sorted: ");
@@ -38,6 +38,7 @@ public class BinarySearchTest {
         for(int x : randArray ) {
             System.out.print(x + " ");
         }
+        System.out.println("\n");
 
 
     }
