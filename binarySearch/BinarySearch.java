@@ -2,6 +2,10 @@ package binarySearch;
 
 public class BinarySearch {
 
+    /**
+     * @param arr is the array passed to the method
+     * @return we got our arr array back sorted
+     */
     public int[] mergeSort(int[] arr) {
         if (arr.length <= 1) return arr;
         // split the array in half
@@ -47,12 +51,44 @@ public class BinarySearch {
         return arr;
     }
 
-    public int[] quickSort(int[] arr){
+    /**
+     * @param arr is the array passed to the method, which needs to be sorted
+     * @param start is the index where the sorting should start
+     * @param end is the index where the sorting should end
+     * @return the array sorted
+     * Sorts the array with the quicksort algorithm where the elements are
+     * compared to the pivot
+     */
+    public int[] quickSort(int[] arr, int start, int end) {
+        if (start >= end) return arr;
+        // determine the pivot
+        int pivot = arr[end];
 
+        // puts all the elements on the left side of the pivot that less than the pivot
+        // and to the right side the ones that greater than the pivot
+        int leftIndex = start;
+        int rightIndex = end - 1;
+        while (leftIndex < rightIndex) {
+            while (arr[leftIndex] < pivot && leftIndex+1 < end) leftIndex++;
+            while (arr[rightIndex] >= pivot && rightIndex-1 >= 0) rightIndex--;
+            if (leftIndex <= rightIndex) swap(arr, leftIndex, rightIndex);
+        }
+        // swaps the pivot to its final index place
+        swap(arr, leftIndex, end);
 
-
+        // recursively called with the same array, but decreasing the
+        // range of the array without touching the pivot
+        quickSort(arr, start, leftIndex - 1);
+        quickSort(arr, leftIndex + 1, end);
 
         return arr;
+    }
+
+    // helper method to swap elements in the array
+    public static final void swap(int[] arr, int i, int j) {
+        int placeholder = arr[i];
+        arr[i] = arr[j];
+        arr[j] = placeholder;
     }
 
 
