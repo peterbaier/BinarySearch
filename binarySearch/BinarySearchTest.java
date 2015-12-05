@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class BinarySearchTest {
     BinarySearch bs;
@@ -99,5 +100,10 @@ public class BinarySearchTest {
         testQuickSortWithRandomArray();
 
         }
+    }
+
+    @Test
+    public void binarySearchTest(){
+        assertEquals(4,bs.binarySearch(expected,6));
     }
 }

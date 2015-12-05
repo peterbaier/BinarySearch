@@ -84,15 +84,58 @@ public class BinarySearch {
         return arr;
     }
 
-    // helper method to swap elements in the array
-    public static final void swap(int[] arr, int i, int j) {
+    /**
+     * Swap elements in the array
+     * @param arr contains the two elements need to be swapped
+     * @param i is element index in the array swapped with element on index j
+     * @param j is element index in the array swapped with element on index i
+     */
+    private static final void swap(int[] arr, int i, int j) {
         int placeholder = arr[i];
         arr[i] = arr[j];
         arr[j] = placeholder;
     }
 
+    /**
+     * Checks if the array is sorted
+     * @param arr is the array will be checked
+     * @return true if the array is sorted, false if not
+     */
+    private boolean isSorted(int[] arr) {
+        for (int i = 0; i < arr.length-1; i++) {
+            if (arr[i] > arr[i + 1]) return false;
+        }
+        return true;
+    }
 
-//    public int bSearch(int[] thearray){
-//
-//    }
+    /**
+     * Checks if the array is sorted and pass it through accordingly to the search method
+     * @param original is the array to be checked
+     * @param number is the number we are looking for
+     * @return the index of the number or -1 if it hasn't been found
+     */
+    public int binarySearch(int[] original, int number) {
+        return (original.length > 0 && !isSorted(original)) ?
+                bSearch(quickSort(original, 0, original.length - 1), number, 0, original.length - 1) : bSearch(original, number, 0, original.length - 1);
+    }
+
+    /**
+     * Search for the number by eliminating half of the array recursively
+     * until either the number is found or no numbers left to check
+     * @param sortedArray is already checked if it sorted
+     * @param number is the number we are looking for
+     * @param start is the first index of the range of array
+     * @param end the last index of the range of array
+     * @return the index of the number or -1 if it hasn't been found
+     */
+    private int bSearch(int[] sortedArray, int number, int start, int end) {
+        if(start >= end && sortedArray[start] != number) return -1;
+        int middle = (start + end) / 2;
+
+        if(sortedArray[middle] == number) return middle;
+        if (sortedArray[middle] > number) return bSearch(sortedArray, number, start, middle - 1);
+        else if (sortedArray[middle] < number) return bSearch(sortedArray, number, middle + 1, end);
+        else return -1;
+    }
+
 }
