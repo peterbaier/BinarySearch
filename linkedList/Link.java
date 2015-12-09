@@ -1,8 +1,5 @@
 package linkedList;
 
-/**
- * Created by Lion on 08/12/2015.
- */
 public class Link {
     private String name;
     private int age;
